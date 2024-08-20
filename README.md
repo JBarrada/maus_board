@@ -9,7 +9,8 @@ In its current state it has connections for:
 
 In addition to that, various 5V and 3.3V power connections, spare I2C pads, an external RGB strip connection, and test points for any unused ESP32 pins.
 
-In order to make this board useful to the majority of people using ROS, I would need to provide a ROS driver for this board. I know next to nothing about ROS and I would appreciate any help writing a ROS driver for this. See source/example.cpp for how to communicate with the board.
+> [!WARNING]
+> In order to make this board useful to the majority of people using ROS, I would need to provide a ROS driver for this board. I know next to nothing about ROS and I would appreciate any help writing a ROS driver for this. See source/example.cpp for how to communicate with the board.
 
 ![image](https://github.com/user-attachments/assets/33a185bd-26c8-4e59-aa50-dd889c8ff06f)
 
