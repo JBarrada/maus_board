@@ -25,6 +25,19 @@ I am only doing this as a hobby. Please use the code and hardware with caution.
 
 ---
 
+### TODOs
+- ROS driver
+- Bidirectional DShot instead of seperate ESC telemetry wire
+
+---
+
+### Supported ESCS
+Any ESC that supports an external telemetry wire will work. It also must have a 5V BEC that can provide at least 3A to power the Pi and board.
+
+Recommended ESC: https://www.amazon.com/dp/B0CPXXPPFH
+
+---
+
 ### Raspberry Pi Setup:
 Note: I’ve only tested this on the Raspberry Pi 4 since it has additional UART interfaces that can be enabled. This is so that the ESP32 and LiDAR can communicate with the Pi on separate interfaces. This will not work on a Pi3 and I don’t know if it will work on a Pi5.
 
@@ -63,3 +76,8 @@ CD into the source folder
 `make example`
 
 `./example`
+
+--- 
+### Contact
+https://www.instagram.com/jus10barrada/
+
