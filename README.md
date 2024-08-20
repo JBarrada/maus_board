@@ -14,6 +14,12 @@ In addition to that, various 5V and 3.3V power connections, spare I2C pads, an e
 
 ![image](https://github.com/user-attachments/assets/33a185bd-26c8-4e59-aa50-dd889c8ff06f)
 
+![image](https://github.com/user-attachments/assets/b86efd99-d0ee-48d6-b2f3-cb1050980544)
+
+Video:
+https://www.youtube.com/watch?v=Ug7xEspHlwM
+
+
 ### Disclaimer
 I am only doing this as a hobby. Please use the code and hardware with caution.
 
