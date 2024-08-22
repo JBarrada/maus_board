@@ -4,6 +4,8 @@
 void imuDataCallback(const MausBoard::ImuData& imuData) {
     // Every 10 milliseconds
     printf("IMU DATA, Yaw: %f radians\n", imuData.getYawRadians());
+
+    // NOTE! Do not block here. Run longer tasks in a seperate thread. 
 }
 
 void escTelemetryCallback(const MausBoard::EscTelemetry& escTelemetry) {
@@ -18,11 +20,15 @@ void escTelemetryCallback(const MausBoard::EscTelemetry& escTelemetry) {
     // Example: 
     // float throttleValue = -0.8f;
     // const float signedERPM = copysignf(escTelemetry.getERPM(), throttleValue);
+
+    // NOTE! Do not block here. Run longer tasks in a seperate thread.
 }
 
 void ld19FullScanCallback(std::vector<LD19::LidarPoint> points) {
     // Every 100 milliseconds
     printf("FULL SCAN: %d points\n", points.size());
+
+    // NOTE! Do not block here. Run longer tasks in a seperate thread.
 }
 
 int main() {
