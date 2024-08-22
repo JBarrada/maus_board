@@ -37,9 +37,16 @@ I am only doing this as a hobby, and this project is very much DIY and not a com
 ---
 
 ### Supported ESCS
-Any ESC that supports an external telemetry wire will work. It also must have a 5V BEC that can provide at least 3A to power the Pi and board.
+Any ESC that supports an external telemetry wire will work (BLHeli32 or AM32 firmware). It also must have a 5V BEC that can provide at least 3A to power the Pi and board.
 
 Recommended ESC: https://www.amazon.com/dp/B0CPXXPPFH
+
+### Configuring the ESC
+AM32 ESC firmware is initally intended to be used for drones, so it will require a little bit of configuration before it can be used with this project. The easiest way I found to configure the ESC is to connect it to a Betaflight flight controller since it provides a passthrough interface for configuring the ESC.
+
+I saw [this little board on Amazon priced around $11](https://www.amazon.com/dp/B0CCXGFSB3/) that claims it can configure AM32 ESCs but I don't know how it works or how to use it. If you end up getting on please contact me so I can help out and update this documentation. 
+
+TODO CONFIGURATION
 
 ---
 
@@ -89,7 +96,7 @@ Here's a Bill Of Materials for the parts I used in my car:
 | Part            | Link                                         | Price   |
 |-----------------|----------------------------------------------|---------|
 | Chassis         | https://www.amazon.com/gp/product/B0CN9Q8LMN | $170.00 |
-| Raspberry Pi    | https://www.amazon.com/dp/B07TC2BK1X         |  $62.00 |
+| Raspberry Pi 4B | https://www.amazon.com/dp/B07TC2BK1X         |  $62.00 |
 | LiDAR           | https://www.amazon.com/dp/B0B1V8D36H         |  $70.00 |
 | IMU             | https://www.amazon.com/dp/B08FHXQ58X         |  $12.00 |
 | Brushless Motor | https://www.amazon.com/gp/product/B0B1D3K8TP |  $23.00 |
@@ -108,12 +115,13 @@ If you do decide to get the ESC, it does not come with a battery connector, so y
 
 The ESC runs on AM32 firmware which is actively maintained and provides some cool features that make it easier to use for this project. We will need to configure the ESC to send telemetry and respond to servo commands like a typical RC car ESC. ESCs running BLHeli32 firmware will also work as they have the same features and configuration but BLHeli is no longer maintained so I don't recommened it.
 
-TODO WRITE THOSE INSTRUCTIONS 
+See [Confguring the ESC](#Configuring-the-ESC) for more info. You will probably need to buy something else in order to configure the ESC ~$10. 
 
 ---
 
 ### Contact
 https://www.instagram.com/jus10barrada/
+
 https://www.linkedin.com/in/justin-barrada-861546a1/
 
 
