@@ -17,6 +17,8 @@ In addition to that, various 5V and 3.3V power connections, spare I2C pads, an e
 
 ![image](https://github.com/user-attachments/assets/33a185bd-26c8-4e59-aa50-dd889c8ff06f)
 
+![image](https://github.com/user-attachments/assets/db537b5e-f5b3-458c-80c6-88dc17858f35)
+
 ![image](https://github.com/user-attachments/assets/b86efd99-d0ee-48d6-b2f3-cb1050980544)
 
 Video:
@@ -94,8 +96,9 @@ Here's a Bill Of Materials for the parts I used in my car:
 | ESC             | https://www.amazon.com/gp/product/B0CPXXPPFH |  $50.00 |
 | ESC Plugs       | https://www.amazon.com/gp/product/B08LL8HPHR |   $8.00 |
 | MAUS Board      |                                              | ~$30?   |
+| TOTAL           |                                              | ~$425   |
 
-I still don't know what to price that MAUS board at, so $30 is a placeholder. **All together the vehicle costs roughly $425**. But you can save a lot money if you already have some similar parts.
+I still don't know what to price that MAUS board at, so $30 is a placeholder. But you can save a lot money if you already have some similar parts.
 
 I chose that chassis because it was the cheapest I could find that was ready to run in 1/10 scale form factor. I also have CAD files for a custom mounting plate for all the electronics that you can laser cut/cnc. (TODO include that file). If you find a cheaper chassis or one that already has a brushless motor, please let me know so I can update the BOM. 
 
@@ -106,6 +109,8 @@ If you do decide to get the ESC, it does not come with a battery connector, so y
 The ESC runs on AM32 firmware which is actively maintained and provides some cool features that make it easier to use for this project. We will need to configure the ESC to send telemetry and respond to servo commands like a typical RC car ESC. ESCs running BLHeli32 firmware will also work as they have the same features and configuration but BLHeli is no longer maintained so I don't recommened it.
 
 TODO WRITE THOSE INSTRUCTIONS 
+
+---
 
 ### Contact
 https://www.instagram.com/jus10barrada/
