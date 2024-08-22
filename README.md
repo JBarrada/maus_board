@@ -1,5 +1,5 @@
 > [!NOTE]
-> This repository is just for the PCB, firmware and related driver code. The code relating to the control, navigation, SLAM, etc of my implementation for the car will remain private, for now. This project is intended to make it easier and cheaper for people to get started developing their own autonomous vehicle code.  
+> This repository is just for the PCB, firmware and related driver code. The code relating to the control, navigation, SLAM, etc of my specific implementation for the car will remain private, for now. This project is intended to make it easier and cheaper for people to get started developing their own autonomous vehicle code.  
 
 ## MAUS Board
 This project was developed as a means to create a very inexpensive F1Tenth car. It is a Raspberry Pi “hat” that connects various peripherals required for a functioning autonomous vehicle.
@@ -24,7 +24,7 @@ https://www.youtube.com/watch?v=Ug7xEspHlwM
 
 
 ### Disclaimer
-I am only doing this as a hobby. Please use the code and hardware with caution.
+I am only doing this as a hobby, and this project is very much DIY and not a complete solution. Please use the code and hardware with caution.
 
 ---
 
@@ -81,6 +81,32 @@ CD into the source folder
 `./example`
 
 --- 
+
+### BOM
+Here's a Bill Of Materials for the parts I used in my car:
+| Part            | Link                                         | Price   |
+|-----------------|----------------------------------------------|---------|
+| Chassis         | https://www.amazon.com/gp/product/B0CN9Q8LMN | $170.00 |
+| Raspberry Pi    | https://www.amazon.com/dp/B07TC2BK1X         |  $62.00 |
+| LiDAR           | https://www.amazon.com/dp/B0B1V8D36H         |  $70.00 |
+| IMU             | https://www.amazon.com/dp/B08FHXQ58X         |  $12.00 |
+| Brushless Motor | https://www.amazon.com/gp/product/B0B1D3K8TP |  $23.00 |
+| ESC             | https://www.amazon.com/gp/product/B0CPXXPPFH |  $50.00 |
+| ESC Plugs       | https://www.amazon.com/gp/product/B08LL8HPHR |   $8.00 |
+| MAUS Board      |                                              | ~$30?   |
+
+I still don't know what to price that MAUS board at, so $30 is a placeholder. **All together the vehicle costs roughly $425**. But you can save a lot money if you already have some similar parts.
+
+I chose that chassis because it was the cheapest I could find that was ready to run in 1/10 scale form factor. I also have CAD files for a custom mounting plate for all the electronics that you can laser cut/cnc. (TODO include that file). If you find a cheaper chassis or one that already has a brushless motor, please let me know so I can update the BOM. 
+
+If your chassis already has a brushless motor, you don't need to buy the motor. And if you don't care about getting ESC telemetry (ERPM, battery voltage, etc) then you also don't need to buy any of the ESC related things and you can use the one that came with your chassis. Although having ERPM information can make localization and dead-reckoning better in your implementation.
+
+If you do decide to get the ESC, it does not come with a battery connector, so you will have to solder on one that matches your battery. In addition to that you will need to solder on a wire to the telemetry pad on the ESC to connect to the "ESC TELEM" pin on the board.
+
+The ESC runs on AM32 firmware which is actively maintained and provides some cool features that make it easier to use for this project. We will need to configure the ESC to send telemetry and respond to servo commands like a typical RC car ESC. ESCs running BLHeli32 firmware will also work as they have the same features and configuration but BLHeli is no longer maintained so I don't recommened it.
+
+TODO WRITE THOSE INSTRUCTIONS 
+
 ### Contact
 https://www.instagram.com/jus10barrada/
 
