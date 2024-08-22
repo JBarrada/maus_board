@@ -1,3 +1,6 @@
+> [!NOTE]
+> This repository is just for the PCB, firmware and related driver code. The code relating to the control, navigation, SLAM, etc of my implementation for the car will remain private, for now. This project is intended to make it easier and cheaper for people to get started developing their own autonomous vehicle code.  
+
 ## MAUS Board
 This project was developed as a means to create a very inexpensive F1Tenth car. It is a Raspberry Pi “hat” that connects various peripherals required for a functioning autonomous vehicle.
 
