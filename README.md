@@ -98,7 +98,7 @@ Here's a Bill Of Materials for the parts I used in my car:
 | MAUS Board      |                                              | ~$30?   |
 | TOTAL           |                                              | ~$425   |
 
-I still don't know what to price that MAUS board at, so $30 is a placeholder. But you can save a lot money if you already have some similar parts.
+You can save a lot money if you already have some similar parts. I still don't know what to price that MAUS board at, so $30 is a placeholder.
 
 I chose that chassis because it was the cheapest I could find that was ready to run in 1/10 scale form factor. I also have CAD files for a custom mounting plate for all the electronics that you can laser cut/cnc. (TODO include that file). If you find a cheaper chassis or one that already has a brushless motor, please let me know so I can update the BOM. 
 
@@ -114,4 +114,6 @@ TODO WRITE THOSE INSTRUCTIONS
 
 ### Contact
 https://www.instagram.com/jus10barrada/
+https://www.linkedin.com/in/justin-barrada-861546a1/
+
 
