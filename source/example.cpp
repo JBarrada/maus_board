@@ -1,5 +1,6 @@
 #include "maus_board.h"
 #include "fhl_ld19.h"
+#include "controller.h"
 
 void imuDataCallback(const MausBoard::ImuData& imuData) {
     // Every 10 milliseconds
@@ -49,8 +50,23 @@ int main() {
     // This just means that the default servo positions will be set after 1 second (neutral)
     // In actual use, you should be sending this command at a set interval (I've used 10ms)
 
+    // Create a controller object so we can control the car with a joystick
+    Controller controller;
+    controller.startPolling();
+
+    // Set some scalers for throttle and steering
+    const float throttleScaler = 0.5f; // Max throttle value from -0.5 to 0.5
+    const float steeringScaler = -0.9f; // Max steering value from -0.9 to 0.9 (negative because its reversed on my vehicle)
+
+    // Keep reading forever
     while (true) {
-        // Keep reading forever
+        // Grab the current joystick inputs and send them to the servos after scaling
+        const float currentThrottleOutput = controller.throttlePos.load() * throttleScaler;
+        const float currentSteeringOutput = controller.steeringPos.load() * steeringScaler;
+        board.sendSetServos((currentSteeringOutput * 500.0f) + 1500, (currentThrottleOutput * 500.0f) + 1500);
+
+        // Sleep for 10 milliseconds
+        usleep(10000);
     }
 
     // Ideally if upon exit you should call board.stopReading() and ld19.stopReading()
