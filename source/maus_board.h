@@ -14,6 +14,7 @@
 #include <thread>
 #include <string.h>
 #include <cmath>
+#include <functional>
 
 #include "timestamp.h"
 
@@ -97,8 +98,9 @@ private:
     uint16_t messageBufferPos = 0;
 
     // Callbacks
-    void (*imuDataCallback)(const ImuData&);
-    void (*escTelemetryCallback)(const EscTelemetry&);
+    // Use std::function to store the callbacks.  This is much more flexible.
+    std::function<void(const ImuData&)> imuDataCallback;
+    std::function<void(const EscTelemetry&)> escTelemetryCallback;
 
     // UART related members
     static const size_t UART_BUFFER_SIZE = 256;
@@ -122,7 +124,11 @@ public:
     // Public debug callback (DEPRECATED)
     void (*echoResponseCallback)(const uint8_t* payload, const uint8_t payloadSize) = nullptr;
 
-    MausBoard(void (*imuDataCallback)(const ImuData&), void (*escTelemetryCallback)(const EscTelemetry&)) : imuDataCallback(imuDataCallback), escTelemetryCallback(escTelemetryCallback) {}
+    MausBoard(std::function<void(const ImuData&)> imuDataCallback, 
+              std::function<void(const EscTelemetry&)> escTelemetryCallback) : 
+        imuDataCallback(std::move(imuDataCallback)),
+        escTelemetryCallback(std::move(escTelemetryCallback))
+    {}
     ~MausBoard() { stopReading(); }
 
     bool startReading();

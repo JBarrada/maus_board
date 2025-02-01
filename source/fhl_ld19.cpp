@@ -141,7 +141,7 @@ bool LD19::startReading() {
         // Open the UART
         uartFileStream = open(DEFAULT_SERIAL_FHL_LD19, O_RDONLY);
         if (uartFileStream == -1) {
-            printf("Unable to open UART\n");
+            printf("Unable to open UART for LD19\n");
             return false;
         }
 

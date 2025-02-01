@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "maus_board.h"
 
 const uint8_t MausBoard::crcTable[] = {
@@ -202,14 +204,49 @@ void MausBoard::readLoop() {
         uint8_t uartBuffer[UART_BUFFER_SIZE];
         while (readingUart) {
             // Read and parse data
-            int len = read(uartFileStream, uartBuffer, UART_BUFFER_SIZE);
-            if (len > 0) {
-                for (int16_t i = 0; i < len; i++) {
-                    messageBuffer[messageBufferPos] = uartBuffer[i];
-                    messageBufferPos = (messageBufferPos + 1) % MAX_MESSAGE_SIZE;
-                }
+            fd_set readfds;
+            struct timeval timeout;
 
-                parseMessageBuffer();
+            FD_ZERO(&readfds);
+            FD_SET(uartFileStream, &readfds);
+
+            // Set timeout (e.g., 100ms)
+            timeout.tv_sec = 0;
+            timeout.tv_usec = 100000; // 100 milliseconds
+
+            int ret = select(uartFileStream + 1, &readfds, nullptr, nullptr, &timeout);
+
+            if (ret == -1)
+            {
+                // Error
+                std::cerr << "Select error: " << strerror(errno) << std::endl;
+                break; // Or handle the error appropriately
+            }
+            else if (ret == 0)
+            {
+                // Timeout
+                // std::cout << "Timeout occurred" << std::endl; // Optional debug output
+                continue; // Go back to the beginning of the loop
+            }
+            else
+            {
+                // Data available
+                int len = read(uartFileStream, uartBuffer, UART_BUFFER_SIZE);
+                if (len > 0)
+                {
+                    for (int16_t i = 0; i < len; i++)
+                    {
+                        messageBuffer[messageBufferPos] = uartBuffer[i];
+                        messageBufferPos = (messageBufferPos + 1) % MAX_MESSAGE_SIZE;
+                    }
+
+                    parseMessageBuffer();
+                }
+                else if (len < 0)
+                {
+                    std::cerr << "Read error: " << strerror(errno) << std::endl;
+                    break;
+                }
             }
         }
     }
@@ -238,7 +275,7 @@ bool MausBoard::startReading() {
         // Open the UART
         uartFileStream = open(DEFAULT_SERIAL_MAUS_BOARD, O_RDWR);
         if (uartFileStream == -1) {
-            printf("Unable to open UART\n");
+            printf("Unable to open UART for Board\n");
             return false;
         }
 
@@ -274,6 +311,7 @@ bool MausBoard::stopReading() {
 }
 
 void MausBoard::sendSetServos(const uint16_t steering, const uint16_t throttle) {
+    std::cout << "steering: " << steering << "\tthrottle: " << throttle << std::endl;
     // Build the payload
     uint8_t payload[1 + 4];
     payload[0] = CommandIds::CMD_SET_SERVOS;
