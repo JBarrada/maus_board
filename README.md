@@ -50,8 +50,8 @@ TODO CONFIGURATION
 
 ---
 
-### Raspberry Pi Setup:
-Note: I’ve only tested this on the Raspberry Pi 4 since it has additional UART interfaces that can be enabled. This is so that the ESP32 and LiDAR can communicate with the Pi on separate interfaces. This will not work on a Pi3 and I don’t know if it will work on a Pi5.
+### Raspberry Pi Setup (Raspberry Pi 4):
+Note: For Raspberry Pi 5 setup, see the section below
 
 #### Assuming a fresh install of Raspbian lite:
 `sudo apt update`
@@ -77,6 +77,44 @@ Add the following lines at the end, before the `enable_uart=1` line
 Save and exit nano (ctrl+s, ctrl+x)
 
 `sudo reboot`
+
+---
+
+### Raspberry Pi Setup (Raspberry Pi 5):
+#### Assuming a fresh install of Raspbian lite:
+`sudo apt update`
+
+`sudo apt upgrade`
+
+`sudo rpi-update`
+
+#### Enable the additional UARTs:
+`sudo raspi-config`
+
+Interface Options -> Serial Port -> Shell? No -> Enable Hardware? Yes
+
+Exit -> Reboot? No
+
+#### Modify config.txt
+`sudo nano /boot/firmware/config.txt`
+
+Add the following lines at the end: 
+
+`enable_uart=1`
+
+`dtoverlay=uart0`
+
+`dtoverlay=uart1`
+
+Save and exit nano (ctrl+s, ctrl+x)
+
+`sudo reboot`
+
+Edit the source files with pi5 specific serial interfaces:
+
+in `source/fhl_ld19.h` change `/dev/serial0` to `/dev/ttyAMA0`
+
+in `source/maus_board.h` change `/dev/ttyAMA2` to `/dev/ttyAMA1`
 
 ---
 
